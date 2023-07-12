@@ -17,15 +17,28 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let exaCoin = CurrentCoin(totalHolding: 10.2, totalUSDValue: 1234.6, marcetCapDominance: 0.7)
-//        let coinModel = ModelOfCoin(data: exaCoin)
-//        assingCoinModel(coinModel: coinModel)
-        
+
         let baseURL = URL(string: "https://api.coingecko.com/api/v3/")
         let requestURL = URL(string: "companies/public_treasury/bitcoin",relativeTo: baseURL)
-        let coinData = try! Data(contentsOf: requestURL!)
-        let jsonData = try! JSONSerialization.jsonObject(with: coinData,options: [])
-        print("JSON DATA \(jsonData)")
+        
+        
+        //        // NOT ASYNC PROCESS
+        //        let coinData = try! Data(contentsOf: requestURL!)
+//        let jsonData = try! JSONSerialization.jsonObject(with: coinData,options: [])
+////        Thread.sleep(until: 5) // Delayin 5 seconds
+//        print("JSON DATA \(jsonData)")
+        
+        
+        //ASYNC PROCESS
+        
+        let request = URLRequest(url: requestURL!)
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.dataTask(with: request) {
+            data , response , error in
+            let jsonData = try! JSONSerialization.jsonObject(with: data!,options:[])
+            print("JSONDATA:\(jsonData)")
+        }
+        task.resume()
     }
     
     
