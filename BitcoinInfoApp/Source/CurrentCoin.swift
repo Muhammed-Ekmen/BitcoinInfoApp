@@ -9,6 +9,7 @@ import Foundation
 
 
 struct CurrentCoin{
+    
     let totalHolding:Double
     let totalUSDValue:Double
     let marcetCapDominance:Double

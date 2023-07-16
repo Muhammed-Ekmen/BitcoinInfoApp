@@ -22,15 +22,14 @@ class HomeViewController: UIViewController {
         let requestURL = URL(string: "companies/public_treasury/bitcoin",relativeTo: baseURL)
         
         
-        //        // NOT ASYNC PROCESS
-        //        let coinData = try! Data(contentsOf: requestURL!)
+//        // NOT ASYNC PROCESS
+//        let coinData = try! Data(contentsOf: requestURL!)
 //        let jsonData = try! JSONSerialization.jsonObject(with: coinData,options: [])
-////        Thread.sleep(until: 5) // Delayin 5 seconds
+////      Thread.sleep(until: 5) // Delayin 5 seconds
 //        print("JSON DATA \(jsonData)")
+//
         
-        
-        //ASYNC PROCESS
-        
+//        ASYNC PROCESS
         let request = URLRequest(url: requestURL!)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: request) {
@@ -52,5 +51,6 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func refreshButtonAction(_ sender: UIButton) {
+        
     }
 }
